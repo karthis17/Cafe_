@@ -1,0 +1,19 @@
+{% include "header.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+<h1>Add a new cafe</h1>
+<div class="container">
+    <!-- This is where your WTForm will go -->
+    {{ wtf.quick_form(form,button_map={"submit": "primary"}) }}
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <p style="color:red">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <p style="margin:20px"><a href="{{ url_for('home') }}">See all cafes</a></p>
+
+</div>
+{% endblock %}
+{% include "footer.html" %}

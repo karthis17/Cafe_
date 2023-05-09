@@ -1,0 +1,30 @@
+{% include "header.html" %}
+
+<h1 style="font-size:2rem">The best cafe <sub>@LONDON</sub></h1>
+<div class="container">
+    <div class="row">
+        {% if status %}
+        {% for cafe in cafes %}
+        <div class="col-sm-8 col-md-6 col-lg-4">
+            <a href="{{ url_for('post', id_=cafe) }}">
+                <div class="card">
+                    <div class="image-container">
+                        <img alt="img" src="{{ cafes[cafe]['img_url'] }}"/>
+                        <div class="hover-slide"><a href="{{ url_for('post', id_=cafe) }}">{{ cafes[cafe]['name'] }}</a><br/>
+                            <span>located @{{cafes[cafe]['location']}}</span></div>
+                    </div>
+                    <h5>{{ cafes[cafe]['name'] }}</h5>
+                    <p>{{ cafes[cafe]['location'].strip() }}</p>
+                    <p><strong>Price : {{ cafes[cafe]['coffee_price'] }}</strong></p>
+                    <a style="color:white" class="btn-dark btn" href="{{ url_for('post', id_=cafe) }}">Learn more</a>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="col-sm-12" style="text-align:center">{{ msg['Not Found'] }}</div>
+        {% endif %}
+    </div>
+</div>
+<p style="margin:20px"><a href="{{ url_for('home') }}">See all cafes</a></p>
+{% include "footer.html" %}

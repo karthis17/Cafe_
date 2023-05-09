@@ -1,0 +1,67 @@
+{% include "header.html" %}
+<header class="masthead" style="background-image: url('{{post.img_url}}')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>{{post.name}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container information">
+    <div class="detail">
+        <h3>
+            <i class="bi bi-geo-alt-fill"></i>{{post.location}}
+        </h3>
+        <p>
+            <i class="fa-solid fa-chair"></i>more than {{post.seats}} available
+        </p>
+        <h3>
+            <i class="bi bi-tag-fill"></i>{{post.coffee_price}}
+        </h3>
+        <a style="margin:0 0 0 20px; padding:5px 20px 5px 0px" class="btn btn-dark" href="{{post.map_url}}">
+            <i class="bi bi-map-fill"></i>Google Map
+        </a>
+    </div>
+    <div class="features">
+        <table>
+            <tr>
+                <td><i class="bi bi-wifi"></i>Wifi</td>
+                {% if post.has_wifi %}
+                <td><i class="bi bi-check-circle"></i></td>
+                {% else %}
+                <td><i class="bi bi-x-circle"></i></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><i class="bi bi-telephone"></i>Allow phone</td>
+                {% if post.can_take_calls %}
+                <td><i class="bi bi-check-circle"></i></td>
+                {% else %}
+                <td><i class="bi bi-x-circle"></i></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><i class="bi bi-outlet"></i>Charger Socket</td>
+                {% if post.has_sockets %}
+                <td><i class="bi bi-check-circle"></i></td>
+                {% else %}
+                <td><i class="bi bi-x-circle"></i></td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td><i class="bi bi-door-closed"></i>Toilet</td>
+                {% if post.has_toilet %}
+                <td><i class="bi bi-check-circle"></i></td>
+                {% else %}
+                <td><i class="bi bi-x-circle"></i></td>
+                {% endif %}
+            </tr>
+        </table>
+    </div>
+</div>
+<div style="text-align:right; margin:30px;"><a class="btn btn-outline-danger my-2 my-sm-0" href="{{url_for('delete_cafe',_id_=post.id)}}"><i style="padding:0 30px" class="bi bi-trash-fill"></i></a> </div>
+{% include "footer.html" %}
